@@ -1,0 +1,12 @@
+.venv
+data/
+venv/*
+inputs/*
+model/pycache/*
+baseline/pycache/*
+model/multithreading/*
+test/*
+logs/*
+.DS_Store/
+results/*
+.DS_Store
