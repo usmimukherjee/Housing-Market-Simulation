@@ -5,6 +5,7 @@ inputs/*
 model/__pycache__/*
 model/test-model/*
 baseline/__pycache__/*
+baseline/baseline-olmez-rl-model/model/__pycache__
 model/multithreading/*
 test/*
 logs/*
