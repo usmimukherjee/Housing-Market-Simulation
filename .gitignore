@@ -2,11 +2,13 @@
 data/
 venv/*
 inputs/*
-model/pycache/*
-baseline/pycache/*
+model/__pycache__/*
+model/test-model/*
+baseline/__pycache__/*
 model/multithreading/*
 test/*
 logs/*
+outputs/*
 .DS_Store/
 results/*
 .DS_Store

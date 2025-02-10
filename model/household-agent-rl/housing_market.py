@@ -9,21 +9,21 @@ from house import House
 class HousingMarket(mesa.Model):
     def __init__(self, years=10):
         super().__init__()
-        self.schedule = RandomActivation(self)
+        # self.schedule = RandomActivation(self)
         self.housing_stock = []
         self.household_data = {}
         self.current_year = 0
         self.total_years = years
         self.init_data()
         self.init_housing_stock()
-
+    
+    def step(self):
+        self.agents.shuffle().do("step")
+    
     def init_data(self):
         """Load initial household and housing data."""
         self.household_data = pd.read_excel('../../inputs/HMTS.xlsx')
         self.parcel_data = pd.read_excel('../../inputs/Parcel.xlsx')
-
-        # if 'wtp' not in self.household_data.columns:
-        #     self.household_data['wtp'] = self.household_data.apply(self.calculate_wtp, axis=1)
 
     def init_housing_stock(self):
         """Initialize the housing stock from parcel data."""
@@ -37,7 +37,7 @@ class HousingMarket(mesa.Model):
             house.price *= (1 + inflation_rate)
 
         # Adjust household WTP (+2% annually to simulate income increases)
-        self.household_data['wtp'] *= (1 + 0.02)  # Update entire column correctly
+        self.household_data['wtp'] *= (1 + 0.02)  
 
 
     def run_year(self, households, game):
