@@ -9,7 +9,6 @@ from house import House
 class HousingMarket(mesa.Model):
     def __init__(self, years=10):
         super().__init__()
-        # self.schedule = RandomActivation(self)
         self.housing_stock = []
         self.household_data = {}
         self.current_year = 0
@@ -51,14 +50,17 @@ class HousingMarket(mesa.Model):
             for household_id in self.household_data.index
         }
 
+        Household.save_eligibility_data(households)
+
         game = BiddingGame()
 
         for year in range(self.total_years):
             print(f"Year {year + 1} Simulation:")
             self.run_year(households, game)
-            self.update_market_conditions() 
+            self.update_market_conditions()
 
         self.evaluate_simulation(households)
+
 
     def evaluate_simulation(self, households):
         """Evaluate the performance of the households and market."""

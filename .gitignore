@@ -3,6 +3,7 @@ data/
 venv/*
 inputs/*
 model/__pycache__/*
+model/household-agent-rl/__pycache__/
 model/test-model/*
 baseline/__pycache__/*
 baseline/baseline-olmez-rl-model/model/__pycache__
@@ -11,5 +12,6 @@ test/*
 logs/*
 outputs/*
 .DS_Store/
-results/*
 .DS_Store
+__pycache__/
+__pycache__/

@@ -3,6 +3,7 @@ import mesa
 from mesa.time import RandomActivation
 import random
 import warnings
+import pandas as pd
 from collections import defaultdict
 
 ignore_warnings = warnings.filterwarnings("ignore")
@@ -61,3 +62,17 @@ class Household(mesa.Agent):
         td_target = reward + GAMMA * self.q_table[next_state][best_next_action]
         td_error = td_target - self.q_table[state][action]
         self.q_table[state][action] += ALPHA * td_error
+
+
+    @staticmethod
+    def save_eligibility_data(households, filename="../../results/household_eligibility.csv"):
+        """Save household eligibility data (wtp, lower_bound, upper_bound) to a CSV file."""
+        df = pd.DataFrame.from_dict(
+            {
+                h.unique_id: {"wtp": h.wtp, "lower_bound": h.lower_bound, "upper_bound": h.upper_bound}
+                for h in households.values()
+            },
+            orient="index"
+        )
+        df.index.name = "household_id"
+        df.to_csv(filename)
