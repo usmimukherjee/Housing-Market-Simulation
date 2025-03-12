@@ -23,7 +23,7 @@ class Household(mesa.Agent):
         # self.eligible_houses = []
 
     def range_calculation(self, wtp):
-        # Calculates the lower and upper bounds of the price range for a house based on WTP
+        # Calculates the lower and upper bounds of the price range for a household based on WTP
         lower_bound = wtp * PERCENTAGE_BELOW_WTP
         upper_bound = wtp * PERCENTAGE_ABOVE_WTP
         return lower_bound, upper_bound
