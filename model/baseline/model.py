@@ -62,8 +62,8 @@ class HousingMarket(mesa.Model):
 
     def init_data(self):
         # Load data from Excel files
-        self.household_data = pd.read_excel('../inputs/HMTS.xlsx')
-        self.parcel_data = pd.read_excel('../inputs/Parcel.xlsx')
+        self.household_data = pd.read_excel('../../inputs/HMTS.xlsx')
+        self.parcel_data = pd.read_excel('../../inputs/Parcel.xlsx')
 
     def init_housing_stock(self):
         # Initialize the housing stock from parcel data
@@ -78,134 +78,72 @@ class HousingMarket(mesa.Model):
 
     def log_data(self):
         # Log data about the households and their eligibility
-        with open('../results/household_eligibility.csv', 'w', newline='') as csvfile:
+        with open('../../results/household_eligibility.csv', 'w', newline='') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(['household_id', 'wtp', 'lower_bound', 'upper_bound'])
             for household in self.schedule.agents:
                 writer.writerow([household.unique_id, household.wtp, household.lower_bound, household.upper_bound])
+
 
 class BiddingGame:
     def __init__(self):
         self.house_list = {}
         self.bidding_results = []
 
-    def load_data(self, household_data_path="../results/household_eligibility.csv", houses_path='../inputs/Parcel.xlsx'):
+    def load_data(self, household_data_path="../../results/household_eligibility.csv", houses_path='../../inputs/Parcel.xlsx'):
         self.household_data = pd.read_csv(household_data_path)
         self.houses = pd.read_excel(houses_path)
 
     def negotiate_price(self, household, house_value):
-        # Negotiates between household's bid and seller's counter-offer until an agreement is reached.
-        bid = household['lower_bound']
-        counter_offer = house_value
-        negotiation_prices = []  # Track negotiation prices
+        bid = float(household['lower_bound'])  # Explicitly convert to Python float
+        counter_offer = float(house_value)  # Explicitly convert to Python float
+        negotiation_prices = []
         
         while bid < counter_offer:
             negotiation_prices.append((bid, counter_offer))
             bid_increase = bid * random.uniform(0.02, 0.05)
             bid += bid_increase
+            
             if bid >= counter_offer:
                 break
+            
             counter_offer_decrease = counter_offer * random.uniform(0.02, 0.05)
             counter_offer -= counter_offer_decrease
-
-        negotiation_prices.append((bid, counter_offer))  # Final negotiation prices
+        
+        negotiation_prices.append((bid, counter_offer))
         final_price = min(bid, counter_offer)
         return final_price, negotiation_prices
 
+
     def bid_on_houses(self, household):
-        # Processes bids for all eligible houses for a given household
         eligible_houses = self.houses[
             (self.houses['PUBVALUE'] > household['lower_bound']) & 
             (self.houses['PUBVALUE'] <= household['upper_bound'])
         ]
-        results = {}
-        for index, house in eligible_houses.iterrows():
+        
+        for _, house in eligible_houses.iterrows():
             final_price, negotiation_prices = self.negotiate_price(household, house['PUBVALUE'])
-            results[house['OBJECTID']] = final_price
-            print(f"Negotiation Prices for House ID {house['OBJECTID']}: {negotiation_prices}")
-            print(f"Final negotiated price for House ID {house['OBJECTID']}: ${final_price}")
-
-        # Add houses slightly beyond the upper bound
-        beyond_upper_bound_houses = self.houses[
-            (self.houses['PUBVALUE'] > household['upper_bound']) &
-            (self.houses['PUBVALUE'] <= household['upper_bound'] * 1.2)  # Up to 20% above the upper bound
-        ]
-        for index, house in beyond_upper_bound_houses.iterrows():
-            final_price, negotiation_prices = self.negotiate_price(household, house['PUBVALUE'])
-            results[house['OBJECTID']] = final_price
-            print(f"Negotiation Prices for House ID {house['OBJECTID']} (beyond upper bound): {negotiation_prices}")
-            print(f"Final negotiated price for House ID {house['OBJECTID']}: ${final_price}")
-
-        return results
-
-    def choose_four_options(self, bidding_results, household):
-        # Select four houses based on specified criteria
-        sorted_houses = sorted(bidding_results.items(), key=lambda x: x[1])  # Sort by price
-        options = {}
-        lower_bound = household['lower_bound']
-        upper_bound = household['upper_bound']
-
-        # Select house close to lower bound
-        options['Close to Lower Bound'] = next(
-            (house for house in sorted_houses if house[1] >= lower_bound), None
-        )
-
-        # Select house close to mid of range
-        mid_range = (lower_bound + upper_bound) / 2
-        options['Mid Range'] = next(
-            (house for house in sorted_houses if house[1] >= mid_range), None
-        )
-
-        # Select house close to upper bound
-        options['Close to Upper Bound'] = next(
-            (house for house in sorted_houses if upper_bound * 0.9 <= house[1] <= upper_bound), None
-        )
-
-        # Select house 10–20% beyond upper bound
-        options['Beyond Upper Bound'] = next(
-            (house for house in sorted_houses if upper_bound < house[1] <= upper_bound * 1.2), None
-        )
-
-        # Remove None entries
-        options = {k: v for k, v in options.items() if v is not None}
-
-        print("Chosen Options:")
-        for key, value in options.items():
-            print(f"{key}: House ID {value[0]} with price ${value[1]}")
-
-        return options
+            self.bidding_results.append({
+                'household_id': household['household_id'],
+                'house_id': house['OBJECTID'],
+                'initial_bid': household['lower_bound'],
+                'final_price': final_price,
+                'counter_offer': house['PUBVALUE'],
+                'negotiation_steps': len(negotiation_prices),
+                'negotiation_prices': str(negotiation_prices)  
+            })
 
     def run(self):
-        # Runs the bidding process for each household
         self.load_data()
-        for index, household in self.household_data.iterrows():
-            print(f"Starting bids for Household ID: {household['household_id']} with price range ${household['lower_bound']} - ${household['upper_bound']}")
-            
-            start_time = time.time()  # Start timing
-            
-            results = self.bid_on_houses(household)
-            
-            end_time = time.time()  # End timing
-            time_taken = end_time - start_time
-            print(f"Time taken for Household ID {household['household_id']}: {time_taken:.2f} seconds")
-            
-            if results:
-                chosen_options = self.choose_four_options(results, household)
-                self.bidding_results.append((household['household_id'], chosen_options))
-            else:
-                print(f"No suitable house found for Household ID: {household['household_id']}")
-            
-            self.save_results()
-            break 
+        for _, household in self.household_data.iterrows():
+            self.bid_on_houses(household)
+        self.save_results()
 
     def save_results(self):
-        # Saves the final bidding results to a CSV file
-        with open('../results/BiddingResults.csv', 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(['Household ID', 'Options'])
-            for result in self.bidding_results:
-                writer.writerow(result)
-
+        with open('../../results/model-baseline/bidding_results.csv', 'w', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=['household_id', 'house_id', 'initial_bid', 'final_price', 'counter_offer', 'negotiation_steps', 'negotiation_prices'])
+            writer.writeheader()
+            writer.writerows(self.bidding_results)
 if __name__ == "__main__":
     model = HousingMarket()
     game = BiddingGame()

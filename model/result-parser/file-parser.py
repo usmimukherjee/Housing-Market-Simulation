@@ -4,9 +4,8 @@ import seaborn as sns
 import ast
 import os
 
-df = pd.read_csv("../../results/bidding_results.csv")
-
-output_dir = "../../output-analysis"
+df = pd.read_csv("../../results/model-baseline/bidding_results.csv")
+output_dir = "../../output-analysis/model-baseline/"
 os.makedirs(output_dir, exist_ok=True)
 
 # Convert `negotiation_prices` from string to list of tuples
@@ -54,7 +53,7 @@ plt.title("Correlation Heatmap")
 plt.savefig(os.path.join(output_dir, "correlation_heatmap.png"))
 plt.close()
 
-# Negotiation Trends (First 5 Households)
+# Negotiation Trends for First 5 Households
 plt.figure(figsize=(10, 6))
 for i, row in df.head(5).iterrows():
     bid_prices = [p[0] for p in row["negotiation_prices"]]  
