@@ -7,10 +7,11 @@ model/household-agent-rl/__pycache__/
 model/test-model/*
 baseline/__pycache__/*
 baseline/baseline-olmez-rl-model/model/__pycache__
-model/multithreading/*
+model/model-multithreading/*
 test/*
 logs/*
-outputs/*
+results/*
+graphs/*
 .DS_Store/
 .DS_Store
 __pycache__/

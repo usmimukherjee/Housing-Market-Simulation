@@ -53,8 +53,11 @@ class BiddingGame:
             self.bidding_results.append({
                 'household_id': household.unique_id,
                 'house_id': house['OBJECTID'],
+                'initial_bid': household.lower_bound,
                 'final_price': final_price,
-                'negotiation_prices': negotiation_prices
+                'counter_offer': house['PUBVALUE'],
+                'negotiation_steps': len(negotiation_prices),
+                'negotiation_prices': str(negotiation_prices)  
             })
         return results
 
@@ -65,7 +68,6 @@ class BiddingGame:
             print(f"Starting bids for Household ID: {household.unique_id} with price range ${household.lower_bound:.2f} - ${household.upper_bound:.2f}")
             results = self.bid_on_houses(household)
             if results:
-                # print(f"Household {household.unique_id} successfully bid on houses: {results}")
                 # Sort houses by price
                 house_list = sorted(results.items(), key=lambda x: x[1])  # [(house_id, price), ...]
                 house_ids, house_prices = zip(*house_list)
@@ -101,3 +103,5 @@ class BiddingGame:
                 household.house_choices = remaining_houses
             else:
                 print(f"No suitable houses found for Household {household.unique_id}")
+
+        pd.DataFrame(self.bidding_results).to_csv("../../results/bidding_results.csv", index=False)
