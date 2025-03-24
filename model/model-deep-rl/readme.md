@@ -1,7 +1,6 @@
 ## Housing Market Model using Deep Reinforcement Learning
 
-This is a simple implementation of agent based housing market model using reinforcement learning (Q-Table)
-
+This is a simple implementation of agent based housing market model using deep reinforcement learning 
 ### Agents
 
 - Household
@@ -31,7 +30,7 @@ This is a simple implementation of agent based housing market model using reinfo
 - Bidding
     - for each household
         - bid on each house in range
-            - negotiate price until bid is equal to counter offer
+            - negotiate price until bid is equal to counter offer using trained model
                 - increase bidding price -> 2% or 5% randomly
                 - counter bid decrease -> 2% or 5% randomly
             - outputs

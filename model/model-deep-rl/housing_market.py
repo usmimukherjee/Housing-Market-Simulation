@@ -15,7 +15,6 @@ from household import Household
 from house import House
 from household_rl import RLHousehold
 from bidding import BiddingGame
-from rule_based_game import RuleBasedGame
 
 class HousingMarket(mesa.Model):
     def __init__(self, years=10):
@@ -41,9 +40,8 @@ class HousingMarket(mesa.Model):
             house.price *= (1 + inflation_rate)
         self.household_data['wtp'] *= (1 + 0.02)
 
-    def run_year(self, households, rl_game, rule_game):
+    def run_year(self, households, rl_game):
         rl_game.run(households['rl'])
-        rule_game.run(households['simulation'])
 
     def simulate(self):
         households = {
@@ -54,9 +52,8 @@ class HousingMarket(mesa.Model):
         }
 
         rl_game = BiddingGame()
-        rule_game = RuleBasedGame(self)
 
         for year in range(self.total_years):
             print(f"Year {year + 1} Simulation:")
-            self.run_year(households, rl_game, rule_game)
+            self.run_year(households, rl_game)
             self.update_market_conditions()

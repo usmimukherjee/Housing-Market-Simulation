@@ -44,35 +44,6 @@ class Household(mesa.Agent):
         )
         return float(self.wtp)
 
-    def rule_based_buying(self, houses):
-        eligible_houses = [house for house in houses.values() if self.lower_bound <= house.price <= self.upper_bound]
-        
-        if eligible_houses:
-            chosen_house = min(eligible_houses, key=lambda x: x.price)
-            negotiation_prices = self.negotiate_price(chosen_house)
-            
-            chosen_house.status = "occupied"
-            self.successful_deals += 1
-            print(f"Household {self.unique_id} successfully bought House {chosen_house.id} for ${chosen_house.price:.2f}")
-        print(f"Negotiation steps: {negotiation_prices}")
-        
-    def negotiate_price(self, house):
-        """Simulates bidding negotiations using rule-based or RL-based strategies."""
-        bid = self.lower_bound
-        counter_offer = house.price
-        negotiation_prices = [(bid, counter_offer)]
-        
-        while bid <= counter_offer:
-            bid += bid * random.uniform(0.02, 0.1)  # Increase bid by 2%-10%
-            
-            if bid >= counter_offer:
-                return negotiation_prices  # Deal is closed
-            
-            counter_offer -= counter_offer * random.uniform(0.02, 0.05)  # Seller adjusts price down
-            negotiation_prices.append((bid, counter_offer))
-        
-        return negotiation_prices
-
 
     @staticmethod
     def save_eligibility_data(households, filename="../../results/household_eligibility.csv"):
