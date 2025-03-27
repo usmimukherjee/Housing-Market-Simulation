@@ -22,6 +22,10 @@ class Household(mesa.Agent):
         household_data.loc[unique_id, 'wtp'] = self.wtp
         self.lower_bound, self.upper_bound = self.range_calculation(self.wtp)
         self.successful_deals = 0
+        self.chosen_house = None
+        self.house_choices = {}
+        self.successful_deals = 0
+        self.deals = []
 
     def range_calculation(self, wtp):
         lower_bound = wtp * PERCENTAGE_BELOW_WTP

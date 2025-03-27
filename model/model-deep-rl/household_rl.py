@@ -30,6 +30,11 @@ class RLHousehold(mesa.Agent):
         self.lower_bound = self.wtp * PERCENTAGE_BELOW_WTP
         self.upper_bound = self.wtp * PERCENTAGE_ABOVE_WTP
         self.household_data = household_data
+        self.successful_deals = 0
+        self.chosen_house = None
+        self.house_choices = {}
+        self.successful_deals = 0
+        self.deals = []
         self.memory = []
         self.model = self.build_model() 
     

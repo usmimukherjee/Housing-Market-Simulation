@@ -41,4 +41,4 @@ This is a simple implementation of agent based housing market model using deep r
 
 
 # Current Progress
-- both rl and rule based bidding is incorporated, need to remove the rule based part, need to setup outputs and visualizations
+- , need to setup outputs and visualizations, and modify the training and testing, need to optimize and validate
