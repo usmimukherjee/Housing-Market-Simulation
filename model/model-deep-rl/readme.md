@@ -41,4 +41,4 @@ This is a simple implementation of agent based housing market model using deep r
 
 
 # Current Progress
-- , need to setup outputs and visualizations, and modify the training and testing, need to optimize and validate
+- need to setup outputs and visualizations, and modify the training and testing, need to optimize by adding multithreading and validate
