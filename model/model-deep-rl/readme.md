@@ -38,7 +38,3 @@ This is a simple implementation of agent based housing market model using deep r
                 - a house in mid range
                 - a house closer to upper bound
                 - 2% above upper bound
-
-
-# Current Progress
-- , need to setup outputs and visualizations, and modify the training and testing, need to optimize and validate

@@ -4,8 +4,8 @@ import seaborn as sns
 import ast
 import os
 
-df = pd.read_csv("../../results/model-baseline/bidding_results.csv")
-output_dir = "../../output-analysis/model-baseline/"
+df = pd.read_csv("../../results/model-deep-rl/bidding_results.csv")
+output_dir = "../../output-analysis/model-deep-rl/"
 os.makedirs(output_dir, exist_ok=True)
 
 # Convert `negotiation_prices` from string to list of tuples

@@ -17,10 +17,11 @@ np.random.seed(0)
 
 PERCENTAGE_ABOVE_WTP = 1.2
 PERCENTAGE_BELOW_WTP = 0.8
-
 ALPHA = 0.001 
 GAMMA = 0.9 
 EPSILON = 0.1  
+NEGOTIATION_PENALTY_FACTOR = 0.05
+NUM_HOUSE_SAMPLE = 15
 
 class RLHousehold(mesa.Agent):
     def __init__(self, unique_id, model, household_data):
