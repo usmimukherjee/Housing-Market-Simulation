@@ -29,7 +29,7 @@ This is a simple implementation of agent based housing market model using deep r
 ## Model
 - Bidding
     - for each household
-        - bid on each house in range
+        - bid on 15-20 house in range
             - negotiate price until bid is equal to counter offer using trained model
                 - increase bidding price -> 2% or 5% randomly
                 - counter bid decrease -> 2% or 5% randomly
