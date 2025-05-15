@@ -12,6 +12,7 @@ import warnings
 import time
 from collections import defaultdict
 from household import Household
+import matplotlib.pyplot as plt
 ignore_warnings = warnings.filterwarnings("ignore")
 np.random.seed(0)
 
@@ -37,7 +38,13 @@ class RLHousehold(mesa.Agent):
         self.successful_deals = 0
         self.deals = []
         self.memory = []
-        self.model = self.build_model() 
+        self.model = self.build_model()
+        
+        # Metrics tracking
+        self.episode_rewards = []
+        self.episode_losses = []
+        self.current_episode_reward = 0
+        self.current_episode_loss = 0
     
     def build_model(self):
         model = keras.Sequential([
@@ -47,3 +54,35 @@ class RLHousehold(mesa.Agent):
         ])
         model.compile(optimizer=keras.optimizers.Adam(learning_rate=ALPHA), loss='mse')
         return model
+        
+    def update_metrics(self, reward, loss):
+        self.current_episode_reward += reward
+        self.current_episode_loss += loss
+        
+    def end_episode(self):
+        self.episode_rewards.append(self.current_episode_reward)
+        self.episode_losses.append(self.current_episode_loss)
+        self.current_episode_reward = 0
+        self.current_episode_loss = 0
+        
+    def plot_metrics(self, save_path=None):
+        plt.figure(figsize=(12, 5))
+        
+        # Plot rewards
+        plt.subplot(1, 2, 1)
+        plt.plot(self.episode_rewards)
+        plt.title('Mean Reward per Episode')
+        plt.xlabel('Episode')
+        plt.ylabel('Reward')
+        
+        # Plot losses
+        plt.subplot(1, 2, 2)
+        plt.plot(self.episode_losses)
+        plt.title('Loss per Episode')
+        plt.xlabel('Episode')
+        plt.ylabel('Loss')
+        
+        plt.tight_layout()
+        if save_path:
+            plt.savefig(save_path)
+        plt.show()

@@ -15,6 +15,7 @@ from household import Household
 from house import House
 from household_rl import RLHousehold
 from bidding import BiddingGame
+import matplotlib.pyplot as plt
 
 class HousingMarket(mesa.Model):
     def __init__(self, years=10):
@@ -26,6 +27,7 @@ class HousingMarket(mesa.Model):
         self.total_years = years
         self.init_data()
         self.init_housing_stock()
+        self.episode = 0
 
     def init_data(self):
         self.household_data = pd.read_excel('../../inputs/HMTS.xlsx')
@@ -41,7 +43,18 @@ class HousingMarket(mesa.Model):
         self.household_data['wtp'] *= (1 + 0.02)
 
     def run_year(self, households, rl_game):
+        self.episode += 1
+        print(f"Running Episode {self.episode}")
         rl_game.run(households['rl'])
+        
+        # End episode for all RL households
+        for household in households['rl'].values():
+            household.end_episode()
+            
+        # Plot metrics for the first household (as a sample)
+        if self.episode % 1 == 0:  # Plot every 1 episodes
+            first_household = next(iter(households['rl'].values()))
+            first_household.plot_metrics(save_path=f'../../output-analysis/model-deep-rl/metrics_episode_{self.episode}.png')
 
     def simulate(self):
         households = {

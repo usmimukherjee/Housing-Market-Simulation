@@ -58,7 +58,9 @@ class BiddingGame:
                     target = household.model.predict(s, verbose=0)
                     target[0][a] = r + GAMMA * np.max(predictions_next[i])
                     targets.append(target[0])
-                household.model.fit(states, np.array(targets), epochs=1, verbose=0)
+                history = household.model.fit(states, np.array(targets), epochs=1, verbose=0)
+                # Update metrics with the current loss
+                household.update_metrics(reward, history.history['loss'][0])
 
         for household in rl_households:
             print(f"Starting bids for Household ID: {household.unique_id}")
@@ -86,7 +88,7 @@ class BiddingGame:
                 print("Other three choices:", remaining_houses)
 
             else:
-                    print(f"No suitable houses found for Household {household.unique_id}")
+                print(f"No suitable houses found for Household {household.unique_id}")
 
         pd.DataFrame(self.bidding_results).to_csv("../../results/model-deep-rl/bidding_results.csv", index=False)
 
