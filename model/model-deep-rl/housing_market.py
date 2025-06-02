@@ -30,8 +30,8 @@ class HousingMarket(mesa.Model):
         self.episode = 0
 
     def init_data(self):
-        self.household_data = pd.read_excel('../../inputs/HMTS.xlsx')
-        self.parcel_data = pd.read_excel('../../inputs/Parcel.xlsx')
+        self.household_data = pd.read_excel('./inputs/HMTS.xlsx')
+        self.parcel_data = pd.read_excel('./inputs/Parcel.xlsx')
 
     def init_housing_stock(self):
         self.housing_stock = [House(row) for _, row in self.parcel_data.iterrows()]
@@ -54,7 +54,7 @@ class HousingMarket(mesa.Model):
         # Plot metrics for the first household (as a sample)
         if self.episode % 1 == 0:  # Plot every 1 episodes
             first_household = next(iter(households['rl'].values()))
-            first_household.plot_metrics(save_path=f'../../output-analysis/model-deep-rl/metrics_episode_{self.episode}.png')
+            first_household.plot_metrics(save_path=f'./output-analysis/model-deep-rl/metrics_episode_{self.episode}.png')
 
     def simulate(self):
         households = {

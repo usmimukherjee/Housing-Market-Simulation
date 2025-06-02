@@ -50,7 +50,7 @@ class Household(mesa.Agent):
 
 
     @staticmethod
-    def save_eligibility_data(households, filename="../../results/household_eligibility.csv"):
+    def save_eligibility_data(households, filename="./results/household_eligibility.csv"):
         """Save household eligibility data (wtp, lower_bound, upper_bound) to a CSV file."""
         df = pd.DataFrame.from_dict(
             {
