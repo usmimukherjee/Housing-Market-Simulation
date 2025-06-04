@@ -24,7 +24,6 @@ class Household(mesa.Agent):
         self.successful_deals = 0
         self.chosen_house = None
         self.house_choices = {}
-        self.successful_deals = 0
         self.deals = []
 
     def range_calculation(self, wtp):
@@ -34,7 +33,7 @@ class Household(mesa.Agent):
     
     def calculate_wtp(self, data):
         y_values = np.ones(10)
-        self.wtp = (
+        wtp = (
             38.637 * data['birth of a child (x1)'] * y_values[0]
             - 12.309 * data.get('distance to CBD (x3) (km)', 0) * y_values[1]
             - 84.074 * data['distance to CBD (x3) (km)'] * y_values[2]
@@ -46,12 +45,10 @@ class Household(mesa.Agent):
             + 0.064 * data['population density (x9)']
             + 2.162 * data['% owned property (x10)'] * 1000
         )
-        return float(self.wtp)
-
+        return float(wtp)
 
     @staticmethod
     def save_eligibility_data(households, filename="./results/household_eligibility.csv"):
-        """Save household eligibility data (wtp, lower_bound, upper_bound) to a CSV file."""
         df = pd.DataFrame.from_dict(
             {
                 h.unique_id: {"wtp": h.wtp, "lower_bound": h.lower_bound, "upper_bound": h.upper_bound}

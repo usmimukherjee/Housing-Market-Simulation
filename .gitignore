@@ -22,3 +22,4 @@ validation-data/
 validation/
 model/model-deep-rl/main-model.py
 model/model-rl/main-model.py
+model/DeepQRL-model/*

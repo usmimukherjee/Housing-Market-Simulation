@@ -47,16 +47,22 @@ class HousingMarket(mesa.Model):
         print(f"Running Episode {self.episode}")
         rl_game.run(households['rl'])
         
-        # End episode for all RL households
+        # End episode for all RL households and reset metrics
         for household in households['rl'].values():
             household.end_episode()
             
-        # Plot metrics for the first household (as a sample)
-        if self.episode % 1 == 0:  # Plot every 1 episodes
+        # Plot metrics for the first household
+        if self.episode % 1 == 0:
             first_household = next(iter(households['rl'].values()))
-            first_household.plot_metrics(save_path=f'./output-analysis/model-deep-rl/metrics_episode_{self.episode}.png')
+            save_path = f'./output-analysis/model-deep-rl/variant__3/metrics_episode_{self.episode}.png'
+            first_household.plot_metrics(save_path=save_path)
+            print(f"Saved metrics visualization for episode {self.episode}")
 
     def simulate(self):
+        # Create directories for outputs
+        os.makedirs("./results/model-deep-rl/variant__3", exist_ok=True)
+        os.makedirs("./output-analysis/model-deep-rl/variant__3", exist_ok=True)
+        
         households = {
             'rl': {household_id: RLHousehold(household_id, self, self.household_data) 
                 for household_id in self.household_data.index},
@@ -67,6 +73,33 @@ class HousingMarket(mesa.Model):
         rl_game = BiddingGame()
 
         for year in range(self.total_years):
-            print(f"Year {year + 1} Simulation:")
+            print(f"\n{'='*50}")
+            print(f"Year {year + 1} Simulation")
+            print(f"{'='*50}")
             self.run_year(households, rl_game)
             self.update_market_conditions()
+            
+            # Save intermediate results
+            self.save_simulation_state(year, households)
+
+    def save_simulation_state(self, year, households):
+        # Save household eligibility data
+        Household.save_eligibility_data(
+            {**households['rl'], **households['simulation']},
+            f"./results/model-deep-rl/variant__3/household_eligibility_year_{year+1}.csv"
+        )
+        
+        # Save RL agent metrics
+        rl_metrics = []
+        for h in households['rl'].values():
+            rl_metrics.append({
+                'household_id': h.unique_id,
+                'episode': year + 1,
+                'total_reward': h.episode_rewards[-1] if h.episode_rewards else 0,
+                'total_loss': h.episode_losses[-1] if h.episode_losses else 0,
+                'successful_deals': h.successful_deals
+            })
+        pd.DataFrame(rl_metrics).to_csv(
+            f"./results/model-deep-rl/variant__3/rl_metrics_year_{year+1}.csv", 
+            index=False
+        )
