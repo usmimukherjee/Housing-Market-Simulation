@@ -26,9 +26,9 @@ This project simulates the housing market using Agent-Based Modeling (ABM) techn
 #### b. Deep RL Model (`model-deep-rl/`)
 - Advanced implementation using Deep Q-Learning
 - Multiple variants available:
-  - **Variant 1**: Basic DQN implementation
-  - **Variant 2**: Competitive bidding with two-round process
-  - **Variant 3**: Enhanced market dynamics
+  - **Variant 1**: Basic DQN implementation using pytorch
+  - **Variant 2**: Competitive bidding with two-round process using pytorch
+  - **Variant 3**: Basic Deep RL simulation using tensorflow
 
 Key features across variants:
 - Neural network-based decision making
@@ -118,14 +118,6 @@ output-analysis/
 - Pandas
 - NumPy
 - Matplotlib
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
 
 ## Future Improvements
 
