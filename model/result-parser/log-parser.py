@@ -2,7 +2,7 @@ import re
 import pandas as pd
 import matplotlib.pyplot as plt
 
-with open("../../logs/logs_rl2.txt", 'r') as file:
+with open("../../logs/deep-rl-log.txt", 'r') as file:
     log_data = file.read()
 
 household_pattern = re.compile(r"Household (\d+) chose house \d+ at \$(\d+\.\d+)")
@@ -38,4 +38,4 @@ df = pd.DataFrame({
 
 # Sort by household ID
 df.sort_values(by="Household", inplace=True)
-df.to_csv("../../results/model-rl/household_prices.csv", index=False)
+df.to_csv("../../results/model-deep-rl/household_prices.csv", index=False)

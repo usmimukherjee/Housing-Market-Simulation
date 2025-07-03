@@ -95,8 +95,8 @@ class BiddingGame:
         self.houses = pd.read_excel(houses_path)
 
     def negotiate_price(self, household, house_value):
-        bid = float(household['lower_bound'])  # Explicitly convert to Python float
-        counter_offer = float(house_value)  # Explicitly convert to Python float
+        bid = float(household['lower_bound'])  
+        counter_offer = float(house_value) 
         negotiation_prices = []
         
         while bid < counter_offer:

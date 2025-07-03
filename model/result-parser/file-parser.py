@@ -4,8 +4,8 @@ import seaborn as sns
 import ast
 import os
 
-df = pd.read_csv("../../results/model-baseline/bidding_results.csv")
-output_dir = "../../output-analysis/model-baseline/"
+df = pd.read_csv("../../results/model-deep-rl/bidding_results.csv")
+output_dir = "../../output-analysis/model-deep-rl/"
 os.makedirs(output_dir, exist_ok=True)
 
 # Convert `negotiation_prices` from string to list of tuples
@@ -30,7 +30,7 @@ plt.close()
 
 #Negotiation Steps vs. Final Price
 plt.figure(figsize=(8, 5))
-sns.scatterplot(x=df["negotiation_steps"], y=df["final_price"])
+sns.barplot(x=df["negotiation_steps"], y=df["final_price"])
 plt.xlabel("Negotiation Steps")
 plt.ylabel("Final Price")
 plt.title("Negotiation Steps vs Final Price")
@@ -39,7 +39,7 @@ plt.close()
 
 # Initial Bids vs. Final Prices
 plt.figure(figsize=(8, 5))
-sns.scatterplot(x=df["initial_bid"], y=df["final_price"])
+sns.lineplot(x=df["initial_bid"], y=df["final_price"])
 plt.xlabel("Initial Bid")
 plt.ylabel("Final Price")
 plt.title("Initial Bids vs Final Prices")
