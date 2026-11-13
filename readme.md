@@ -36,49 +36,25 @@ Below is an overview of the study and the three bidding workflows compared in th
 
 The workflow from data collection (HMTS survey, DMTI spatial data, Halifax assessments and sales) to the three simulation models and their evaluation.
 
-<table>
-  <tr>
-    <td bgcolor="#ffffff">
-      <img src="images/schematic.png" alt="Study methodology schematic" style="background-color: white; padding: 8px; />
-    </td>
-  </tr>
-</table>
+![Study methodology schematic](images/schematic-white.png)
 
 ### ABM — Rule-based bidding
 
 Households find properties within their willingness-to-pay range and open below it, while sellers open at the assessed value. Each round the household raises its bid by a fixed percentage and the seller lowers its counter-offer at a rate set by the sale-to-list ratio. Negotiation ends at agreement or when the round limit is reached.
 
-<table>
-  <tr>
-    <td bgcolor="#ffffff">
-      <img src="images/ABM.png" alt="Rule-based bidding workflow" style="background-color: white; padding: 8px; />
-    </td>
-  </tr>
-</table>
+![Rule-based bidding workflow](images/ABM-white.png)
 
 ### RL — Q-learning bidding
 
 The fixed bid-increase rule is replaced by a tabular Q-learning policy. The state is the current bid and the seller's counter-offer, the actions are small, medium, or large bid increments, and actions are chosen epsilon-greedily. Rewards favour reaching agreement and penalise long negotiations.
 
-<table>
-  <tr>
-    <td bgcolor="#ffffff">
-      <img src="images/rl.png" alt="Q-learning bidding workflow" />
-    </td>
-  </tr>
-</table>
+![Q-learning bidding workflow](images/rl-white.png)
 
 ### DRL — Deep Q-Network bidding
 
 A feed-forward network estimates a Q-value for each bidding action from the normalised bid and counter-offer. It is trained from a replay buffer, with a periodically updated target network.
 
-<table>
-  <tr>
-    <td bgcolor="#ffffff">
-      <img src="images/dqn.png" alt="DQN bidding workflow" />
-    </td>
-  </tr>
-</table>
+![DQN bidding workflow](images/dqn-white.png)
 
 ## Repository Structure
 
