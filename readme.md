@@ -64,38 +64,36 @@ Key folders and files at the package root:
 readme.md
 LICENSE
 requirements.txt
-images/                          # schematic and bidding-workflow diagrams (Figs. 1, 3–5)
-inputs/                          # not tracked by git (see .gitignore)
-  HMTS Data_WTP.xlsx             # HMTS survey extract with WTP worksheet (n = 313)
-  derived/                       # observed_annual, observed_ratio, listing_pool, buyers, record_counts
+images/                          
+inputs/                          
+  HMTS Data_WTP.xlsx             
+  derived/                       
 src/
-  replication/                   # baseline models reproduced from prior work
-    baseline-bidding-model/      #   rule-based bidding ABM
-    baseline-olmez-rl-model/     #   MESA re-implementation of the PwC UK housing ABM (model/)
-  data-preparation/              # prepare_observed_data.py -> inputs/derived/
-  descriptive-statistics/        # descriptive_statistics.py (Table 2.1), price_trend_figure.py (Fig. 2)
-  src-convergence/               # RQ1: steps 1–5 (calibrate, tune, stabilise DQN, train, evaluate, tables)
-    housing_abm/                 #   shared model: market, rule-based / Q-learning / DQN policies, shocks
-  src-scenario/                  # RQ2: market_shocks.py, annual_shocks.py, shock_response_analysis.py
-  src-model-complexity/          # RQ3: compute_benchmark.py, scaling_benchmark.py
+  replication/                   
+    baseline-bidding-model/      
+    baseline-olmez-rl-model/     
+  data-preparation/              
+  descriptive-statistics/        
+  src-convergence/               
+    housing_abm/                 
+  src-scenario/                  
+  src-model-complexity/          
 results/
-  descriptive-statistics/        # Table 2.1, Fig. 2 data, income categories
+  descriptive-statistics/        
   results-convergence/
-    calibration/                 # market grid search and selected parameters
-    tuning/                      # Q-learning tuning and DQN stability rounds
-    training/                    # main/ (10 seeds per learner) and ablations: actions-A5,
-                                 #   double-dqn, reward-deal, reward-surplus, state-minimal
-    evaluation/                  # frozen-policy runs, benchmarks, deviation test, sanity checks
-    tables/                      # tables 1–8 (CSV and LaTeX)
-    *.csv, config_final.json     # summary files (final metrics, convergence, yearly sim vs obs)
+    calibration/                 
+    tuning/                      
+    training/                    
+    evaluation/                  
+    tables/                      
   results-scenario/
-    shocks/                      # paired shock runs, summaries, paired-response tests
-    annual_*.csv                 # yearly deviation, summary and model differences (Figs. 7–8)
-  results-complexity/            # benchmark runs and summary, training costs, environment.json
-    scaling/                     # scaling runs, summary and slopes
+    shocks/                      
+    annual_*.csv                 
+  results-complexity/           
+    scaling/                     
 graphs/
-  assessed_value_sale_price_per_year.png   # Figure 2
-  shocks/                                  # Figures 7 and 8
+  assessed_value_sale_price_per_year.png   
+  shocks/                                 
 logs/
   convergence/  scenario/  complexity/  descriptive-statistics/
 ```
@@ -148,9 +146,11 @@ python src/src-model-complexity/scaling_benchmark.py --summarise-only # Table 2.
 
 - HMTS survey extract: `inputs/HMTS Data_WTP.xlsx` (household characteristics and WTP worksheet)
 - Derived model inputs: `inputs/derived/` (`observed_annual.csv`, `observed_ratio.csv`, `listing_pool.csv`, `buyers.csv`, `record_counts.csv`)
-- Raw Halifax sales and assessments, read from the main repository's `validation/` folder:
+- Raw Halifax sales and assessments
   - `HRM_sale_data_yearly.csv`
   - `Assessed_Value_and_Taxable_Assessed_Value_History.csv`
+
+  Please contact the authors for the data. It is proprietary and cannot be released publicly.
 
 ## Running Experiments
 
@@ -165,17 +165,17 @@ A full run takes about 6 h on 8 CPU cores, plus about 1.5 h of benchmarks.
 
 1. Prepare inputs: `python src/data-preparation/prepare_observed_data.py` writes `inputs/derived/`.
 2. Descriptive statistics: `descriptive_statistics.py` and `price_trend_figure.py` in `src/descriptive-statistics/`.
-3. RQ1: from `src/src-convergence/` (the scripts import `housing_abm` from that folder), run in order:
+3. RQ1: from `src/src-convergence/`, run in order:
    - `1_calibrate_market.py`
    - `2_tune_hyperparameters.py --model both`
    - `2b_dqn_stability_fixes.py`
-   - `3_train_final.py` (main runs and ablations; `--only main` for the main runs only)
+   - `3_train_final.py` 
    - `4_evaluate.py`
    - `5_make_figures_tables.py`
 
    Steps 2–4 accept `--workers N` (default 8).
-4. RQ2: `src/src-scenario/market_shocks.py`, then `annual_shocks.py`. `shock_response_analysis.py` is an additional analysis of responsiveness, recovery and stability; its outputs are not included in `results/`.
-5. RQ3: `src/src-model-complexity/compute_benchmark.py` and `scaling_benchmark.py`, on an otherwise idle machine. Use `--summarise-only` to rebuild the summaries from saved runs.
+4. RQ2: `src/src-scenario/market_shocks.py`, then `annual_shocks.py`.
+5. RQ3: `src/src-model-complexity/compute_benchmark.py` and `scaling_benchmark.py`. Use `--summarise-only` to rebuild the summaries from saved runs.
 6. Console logs from the runs used in the chapter are in `logs/<experiment>/`.
 
 ## Authors
