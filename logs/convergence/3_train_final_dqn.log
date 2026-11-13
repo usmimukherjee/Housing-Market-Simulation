@@ -1,0 +1,22 @@
+1/16 dqn main s3 best_val 0.2257 converged True (230) 4193s
+2/16 dqn main s4 best_val 0.2204 converged True (240) 5916s
+3/16 dqn main s1 best_val 0.2233 converged True (230) 5919s
+4/16 dqn main s0 best_val 0.2204 converged True (230) 5924s
+5/16 dqn main s5 best_val 0.2247 converged True (240) 5929s
+6/16 dqn main s2 best_val 0.2256 converged True (230) 5929s
+7/16 dqn main s6 best_val 0.2203 converged True (200) 12062s
+8/16 dqn main s7 best_val 0.2221 converged True (230) 12220s
+9/16 dqn main s9 best_val 0.2210 converged True (230) 12282s
+10/16 dqn reward-deal s1 best_val 0.2213 converged True (250) 12306s
+11/16 dqn main s8 best_val 0.2207 converged True (250) 12314s
+12/16 dqn reward-deal s0 best_val 0.2238 converged True (230) 12340s
+13/16 dqn reward-surplus s0 best_val 0.2233 converged True (230) 13346s
+14/16 dqn reward-surplus s1 best_val 0.2259 converged False (None) 13489s
+15/16 dqn double-dqn s1 best_val 0.2217 converged False (None) 13652s
+16/16 dqn double-dqn s0 best_val 0.2254 converged True (250) 13659s
+                      best_val_score  final_greedy_reward  untrained_greedy_reward  converged
+model variant                                                                                
+dqn   double-dqn            0.223568             0.275655                 0.054951        0.5
+      main                  0.222429             0.276411                 0.093425        1.0
+      reward-deal           0.222555             0.373202                 0.110657        1.0
+      reward-surplus        0.224610             0.628813                 0.350797        0.5

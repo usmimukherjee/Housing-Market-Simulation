@@ -1,0 +1,21 @@
+    group                            variable   n        mean         sd       min         max
+Household            Mover (1), non-mover (0) 313      0.6070     0.4892    0.0000      1.0000
+Household                Presence of children 311      0.3569     0.4799    0.0000      1.0000
+Household                    Birth of a child 213      0.2676     0.4438    0.0000      1.0000
+Household                      Number of cars 313      1.3355     0.9333    0.0000      5.0000
+Household                    No car ownership 313      0.1789     0.3839    0.0000      1.0000
+Household                     Income category 306      4.5948     1.8303    1.0000      7.0000
+Household                  Willingness to pay 190 160525.1494 79842.0111 5410.4803 378647.9281
+Household                 Owned property (\%) 313     89.0000     0.0000   89.0000     89.0000
+Household                  Population density 313      7.0000     0.0000    7.0000      7.0000
+   Parcel     Dwelling type (single detached) 313      0.5527     0.4980    0.0000      1.0000
+   Parcel                     Number of rooms 313      8.0048     3.1380    1.0000     20.0000
+   Parcel                         Parcel size 313      0.0441     0.0173    0.0055      0.1102
+   Parcel        Distance to nearest bus stop 311      3.2552    12.1723    0.0010    115.0000
+   Parcel     Distance to work location / CBD 313     11.0335    15.6403    0.0000    113.6541
+   Parcel   Distance to nearest park / school 313      3.3541    10.9226    0.0003     88.0504
+   Parcel Distance to nearest business centre 313      7.8828    13.4315    0.2173    107.1309
+
+Income counts: {1: 31, 2: 14, 3: 31, 4: 61, 5: 54, 6: 65, 7: 50} | missing: 7
+
+Wrote outputs to /Users/usmimukherjee/Code/Housing-Market-Simulation/replication-package-housing-market/results/descriptive-statistics

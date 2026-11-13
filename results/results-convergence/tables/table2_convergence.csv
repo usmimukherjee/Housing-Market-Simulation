@@ -1,0 +1,16 @@
+Quantity,Q-learning,DQN
+Seeds,10,10
+Converged seeds,10/10,10/10
+Episodes to convergence,120 [90-250],230 [200-250]
+Best checkpoint episode,180,60
+Final MA reward,0.288 (0.004),0.281 (0.004)
+"Greedy reward, untrained",0.213 (0.005),0.093 (0.156)
+"Greedy reward, final",0.288 (0.002),0.276 (0.006)
+Val RMSE ($000),45.6 (4.6),45.6 (3.4)
+Val MAE ($000),34.0 (3.2),34.2 (1.4)
+Test RMSE ($000),166.8 (10.2),165.8 (8.4)
+Test MAE ($000),165.5 (10.1),164.4 (8.4)
+"Policy change, last 5 checkpoints",0.022 (0.011),0.030 (0.009)
+Final TD error / loss,0.1079 (0.0010),0.0161 (0.0003)
+"Q-table change, last 20 episodes (%)",0.16 (0.09),--
+Mean training time (min),0.8,101.2

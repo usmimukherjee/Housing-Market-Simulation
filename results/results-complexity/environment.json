@@ -1,0 +1,39 @@
+{
+  "cpu_model": "Apple M3",
+  "physical_cores": 8,
+  "logical_cores": 8,
+  "performance_cores": "4",
+  "efficiency_cores": "4",
+  "ram_total_gb": 16.0,
+  "os": "Darwin 26.6.2 (arm64)",
+  "python": "3.11.9",
+  "numpy": "2.0.2",
+  "pandas": "2.2.3",
+  "torch": "2.6.0",
+  "blas": "Apple Accelerate (numpy build config)",
+  "gpu_used": false,
+  "torch_cuda_available": false,
+  "thread_env": {
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "VECLIB_MAXIMUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "torch_num_threads": 1,
+  "execution": "one process per run, runs executed sequentially",
+  "cpu_percent_definition": "process CPU time / wall time x 100 = % of one core; machine-wide % = that value / logical cores",
+  "checks": {
+    "runs": 420,
+    "runs_per_model": {
+      "Q-learning": 200,
+      "DQN": 200,
+      "Rule-based": 20
+    },
+    "max_rel_diff_vs_stored_output": 2.2202550523447779e-16,
+    "all_15_years_compared": true,
+    "torch_threads_all_1": true,
+    "load_avg_1min_before_runs_mean": 2.3832449776785714,
+    "load_avg_1min_before_runs_max": 4.8828125
+  }
+}

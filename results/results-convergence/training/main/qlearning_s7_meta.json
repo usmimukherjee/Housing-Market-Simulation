@@ -1,0 +1,9 @@
+{
+  "best_episode": 130,
+  "best_val_score": 0.22793425508896883,
+  "stopped_early_at": null,
+  "train_time_s": 52.87008094787598,
+  "n_params": 2592,
+  "converged": true,
+  "converged_episode": 190
+}

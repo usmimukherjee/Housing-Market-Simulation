@@ -1,0 +1,17 @@
+group,variable,description,kind,n,mean,sd,min,max
+Household,"Mover (1), non-mover (0)","Classified as mover when computed WTP $>$ 0 = 1, 0 otherwise",share,313,0.607029,0.489193,0.000000,1.000000
+Household,Presence of children,"Household has at least one child = 1, 0 otherwise",share,311,0.356913,0.479861,0.000000,1.000000
+Household,Birth of a child,"Birth of a child expected in the household = 1, 0 otherwise",share,213,0.267606,0.443754,0.000000,1.000000
+Household,Number of cars,Total number of vehicles owned by the household,mean,313,1.335463,0.933316,0.000000,5.000000
+Household,No car ownership,"Household owns no cars = 1, 0 otherwise",share,313,0.178914,0.383894,0.000000,1.000000
+Household,Income category,"Annual household income, ordinal code 1 (lowest) to 7 (highest)",mean,306,4.594771,1.830302,1.000000,7.000000
+Household,Willingness to pay,"Computed WTP of movers, before the 1.8 calibration scaling (CAD)",mean,190,160525.149372,79842.011092,5410.480319,378647.928064
+Household,Owned property (\%),Share of owner-occupied dwellings; same value for every household,constant,313,89.000000,0.000000,89.000000,89.000000
+Household,Population density,Population density index; same value for every household,constant,313,7.000000,0.000000,7.000000,7.000000
+Parcel,Dwelling type (single detached),"Single-detached dwelling = 1, 0 otherwise",share,313,0.552716,0.498009,0.000000,1.000000
+Parcel,Number of rooms,Total number of rooms in the dwelling,mean,313,8.004792,3.137982,1.000000,20.000000
+Parcel,Parcel size,Derived as rooms $\times$ 240 sq ft (acres),mean,313,0.044104,0.017289,0.005510,0.110193
+Parcel,Distance to nearest bus stop,Self-reported home to transit stop distance (km),mean,311,3.255214,12.172324,0.001000,115.000000
+Parcel,Distance to work location / CBD,Home to work distance (km); also used as the CBD distance term,mean,313,11.033540,15.640276,0.000000,113.654096
+Parcel,Distance to nearest park / school,GIS distance to nearest bus stop (km); used for both the park and school terms,mean,313,3.354103,10.922647,0.000333,88.050436
+Parcel,Distance to nearest business centre,GIS distance to nearest shopping centre (km),mean,313,7.882791,13.431550,0.217327,107.130942

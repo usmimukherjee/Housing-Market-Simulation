@@ -1,0 +1,41 @@
+1/30 qlearning main s1 best_val 0.2279 converged True (120) 40s
+2/30 qlearning main s2 best_val 0.2293 converged True (100) 40s
+3/30 qlearning main s0 best_val 0.2275 converged True (90) 40s
+4/30 qlearning main s3 best_val 0.2285 converged True (120) 40s
+5/30 qlearning main s4 best_val 0.2285 converged True (110) 92s
+6/30 qlearning main s5 best_val 0.2242 converged True (250) 92s
+7/30 qlearning main s6 best_val 0.2282 converged True (120) 93s
+8/30 qlearning main s7 best_val 0.2279 converged True (190) 93s
+9/30 qlearning main s8 best_val 0.2286 converged True (120) 149s
+10/30 qlearning main s9 best_val 0.2286 converged True (130) 150s
+11/30 qlearning reward-deal s0 best_val 0.2202 converged True (80) 150s
+12/30 qlearning reward-deal s1 best_val 0.2215 converged True (90) 151s
+13/30 qlearning reward-deal s2 best_val 0.2213 converged True (80) 201s
+14/30 qlearning reward-deal s3 best_val 0.2203 converged True (100) 202s
+15/30 qlearning reward-deal s4 best_val 0.2186 converged True (350) 202s
+16/30 qlearning reward-surplus s0 best_val 0.2269 converged True (50) 204s
+17/30 qlearning reward-surplus s1 best_val 0.2241 converged True (50) 254s
+18/30 qlearning reward-surplus s3 best_val 0.2269 converged True (50) 256s
+19/30 qlearning reward-surplus s2 best_val 0.2278 converged True (40) 256s
+20/30 qlearning reward-surplus s4 best_val 0.2275 converged True (60) 258s
+21/30 qlearning state-minimal s0 best_val 0.2484 converged True (70) 303s
+22/30 qlearning state-minimal s1 best_val 0.2509 converged True (100) 304s
+23/30 qlearning state-minimal s2 best_val 0.2517 converged True (100) 304s
+24/30 qlearning state-minimal s3 best_val 0.2483 converged True (100) 306s
+25/30 qlearning state-minimal s4 best_val 0.2491 converged True (150) 354s
+26/30 qlearning actions-A5 s0 best_val 0.2530 converged True (310) 355s
+27/30 qlearning actions-A5 s1 best_val 0.2532 converged True (350) 356s
+28/30 qlearning actions-A5 s2 best_val 0.2555 converged True (300) 358s
+29/30 qlearning actions-A5 s3 best_val 0.2546 converged True (320) 390s
+30/30 qlearning actions-A5 s4 best_val 0.2534 converged True (390) 391s
+                          best_val_score  final_greedy_reward  untrained_greedy_reward  converged
+model     variant                                                                                
+dqn       double-dqn            0.223568             0.275655                 0.054951        0.5
+          main                  0.222429             0.276411                 0.093425        1.0
+          reward-deal           0.222555             0.373202                 0.110657        1.0
+          reward-surplus        0.224610             0.628813                 0.350797        0.5
+qlearning actions-A5            0.253926             0.304323                 0.274207        1.0
+          main                  0.227936             0.288179                 0.213037        1.0
+          reward-deal           0.220374             0.377883                 0.282555        1.0
+          reward-surplus        0.226662             0.655330                 0.555909        1.0
+          state-minimal         0.249687             0.230305                 0.212091        1.0

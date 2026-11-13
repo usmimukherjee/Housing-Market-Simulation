@@ -1,0 +1,146 @@
+wrote /Users/usmimukherjee/Code/Housing-Market-Simulation/replication-package-updated/graphs/RL-DRL-Training-Convergence.png
+wrote /Users/usmimukherjee/Code/Housing-Market-Simulation/replication-package-updated/graphs/RL-Training-Convergence.png
+wrote /Users/usmimukherjee/Code/Housing-Market-Simulation/replication-package-updated/graphs/DRL-Training-Convergence.png
+wrote /Users/usmimukherjee/Code/Housing-Market-Simulation/replication-package-updated/graphs/RL-DRL-Validation-Error.png
+wrote /Users/usmimukherjee/Code/Housing-Market-Simulation/replication-package-updated/graphs/Rule-Based-RL-DRL-Calibration-2010-2024.png
+wrote /Users/usmimukherjee/Code/Housing-Market-Simulation/replication-package-updated/graphs/Rule-Based-RL-DRL-Recalibrated-2010-2024.png
+wrote /Users/usmimukherjee/Code/Housing-Market-Simulation/replication-package-updated/graphs/Rule-Based-RL-DRL-Residuals-2010-2024.png
+wrote /Users/usmimukherjee/Code/Housing-Market-Simulation/replication-package-updated/graphs/RL-DRL-Reward-Ablation.png
+wrote /Users/usmimukherjee/Code/Housing-Market-Simulation/replication-package-updated/graphs/RL-DRL-Learning-Sanity-Checks.png
+                Model             Parameter                                                                    Selected                                                    Searched
+0          Q-learning                 alpha                                                                         0.1                                         0.05, 0.1, 0.2, 0.4
+1          Q-learning               alpha_c                                                                       200.0                                0 (constant), 200 (decaying)
+2          Q-learning                 gamma                                                                         0.9                                            0.90, 0.95, 0.99
+3          Q-learning             eps_start                                                                         0.8                                               0.5, 0.8, 1.0
+4          Q-learning               eps_min                                                                        0.05                                                  0.01, 0.05
+5          Q-learning         epsilon decay                                                 linear over 50% of episodes                                                       fixed
+6          Q-learning      states x actions                                                                     864 x 3                                                       fixed
+7          Q-learning     training episodes                                                                         400                                               300 in tuning
+8                 DQN                hidden                                                                   [128, 64]                                  [32,32], [64,64], [128,64]
+9                 DQN                    lr                                                                      0.0005                                            1e-3, 5e-4, 1e-4
+10                DQN                 gamma                                                                         0.9                                            0.90, 0.95, 0.99
+11                DQN            batch_size                                                                         128                                                 32, 64, 128
+12                DQN           buffer_size                                                                       10000                                              10,000, 50,000
+13                DQN         target_update                                                                        1000                               100, 500, 1000 gradient steps
+14                DQN        replay warm-up                                                            2000 transitions                                                       fixed
+15                DQN      update frequency                                                      1 step / 4 transitions                                                       fixed
+16                DQN   loss, gradient clip                                                            Huber, norm 10.0                                                       fixed
+17                DQN               epsilon                                                1.0 to 0.05, linear over 50%                                                       fixed
+18                DQN       inputs, actions                                         10 standardised features, 3 actions                                                       fixed
+19                DQN     training episodes                                                                         250  200 in tuning (20 sampled configs + 16 stability variants)
+20       Market (all)             wtp_scale                                                                         1.6                                     1.4, 1.6, 1.8, 2.0, 2.2
+21       Market (all)         income_growth                                                                        0.03                                      0.01, 0.02, 0.03, 0.04
+22       Market (all)    buyers_per_listing                                                                         1.0                                          0.8, 1.0, 1.2, 1.5
+23       Market (all)  feedback_sellthrough                                                                         0.1                                              0.0, 0.1, 0.25
+24       Market (all)  feedback_sale_to_ask                                                                         0.5                                                    0.5, 1.0
+25  Reward (learners)        realism reward  +1.0 deal; -2.0|P-P*|/P*; -1.0 overpay; -0.02/round; -0.5 fail; -0.25 lost                                     ablation: deal, surplus
+Model                              Quantity       Q-learning              DQN
+0                                     Seeds               10               10
+1                           Converged seeds            10/10            10/10
+2                   Episodes to convergence     120 [90-250]    230 [200-250]
+3                   Best checkpoint episode              180               60
+4                           Final MA reward    0.288 (0.004)    0.281 (0.004)
+5                  Greedy reward, untrained    0.213 (0.005)    0.093 (0.156)
+6                      Greedy reward, final    0.288 (0.002)    0.276 (0.006)
+7                           Val RMSE ($000)       45.6 (4.6)       45.6 (3.4)
+8                            Val MAE ($000)       34.0 (3.2)       34.2 (1.4)
+9                          Test RMSE ($000)     166.8 (10.2)      165.8 (8.4)
+10                          Test MAE ($000)     165.5 (10.1)      164.4 (8.4)
+11        Policy change, last 5 checkpoints    0.022 (0.011)    0.030 (0.009)
+12                    Final TD error / loss  0.1079 (0.0010)  0.0161 (0.0003)
+13     Q-table change, last 20 episodes (%)      0.16 (0.09)               --
+14                 Mean training time (min)              0.8            101.2
+                                Model            Unit (n) Train RMSE ($000) Train MAE ($000) Train MAPE (%) Val RMSE ($000) Val MAE ($000) Val MAPE (%) Test RMSE ($000) Test MAE ($000) Test MAPE (%) Train sMAPE (%) Test sMAPE (%)      Train R2  Val ratio MAE Test ratio MAE Test growth (%/yr)
+0                          Rule-based    market seed (20)         9.2 (2.2)        7.7 (1.8)      3.0 (0.7)      62.3 (5.4)     46.6 (4.7)   12.8 (1.4)      199.6 (5.9)     198.2 (5.9)    39.8 (1.2)       3.1 (0.7)     49.8 (1.9)   0.04 (0.41)  0.126 (0.007)  0.478 (0.020)          1.2 (2.5)
+1                          Q-learning  training seed (10)        16.6 (2.4)       14.0 (2.0)      5.5 (0.8)      45.6 (4.6)     34.0 (3.2)    9.5 (0.8)     166.8 (10.2)    165.5 (10.1)    33.2 (2.0)       5.3 (0.7)     39.9 (3.0)  -2.13 (0.70)  0.091 (0.009)  0.338 (0.042)          2.0 (0.4)
+2                                 DQN  training seed (10)        17.4 (2.7)       14.5 (2.5)      5.7 (1.0)      45.6 (3.4)     34.2 (1.4)    9.6 (0.3)      165.8 (8.4)     164.4 (8.4)    33.0 (1.7)       5.5 (0.9)     39.6 (2.4)  -2.43 (1.07)  0.092 (0.004)  0.331 (0.032)          2.0 (0.2)
+3   Q-learning (best val. checkpoint)  training seed (10)        17.3 (0.3)       14.6 (0.2)      5.7 (0.1)      44.5 (0.4)     33.1 (0.4)    9.3 (0.1)      163.6 (0.5)     162.2 (0.4)    32.6 (0.1)       5.5 (0.1)     39.0 (0.1)  -2.33 (0.11)  0.088 (0.001)  0.324 (0.002)          2.1 (0.2)
+4          DQN (best val. checkpoint)  training seed (10)        19.5 (1.6)       16.4 (1.4)      6.4 (0.5)      42.9 (1.4)     33.3 (0.4)    9.5 (0.2)      158.1 (4.7)     156.8 (4.6)    31.5 (0.9)       6.1 (0.5)     37.4 (1.3)  -3.23 (0.70)  0.093 (0.003)  0.303 (0.016)          2.3 (0.3)
+5                              Random    market seed (20)        14.6 (3.1)       12.1 (2.4)      4.7 (0.9)      46.7 (5.0)     33.1 (3.5)    9.1 (1.0)      170.2 (6.6)     169.0 (6.7)    33.9 (1.4)       4.6 (0.9)     40.9 (2.0)  -1.40 (0.99)  0.090 (0.004)  0.352 (0.013)          2.2 (2.1)
+6                Untrained Q-learning  training seed (10)        14.7 (0.3)       12.1 (0.2)      4.7 (0.1)      47.3 (0.7)     34.4 (0.4)    9.5 (0.1)      170.3 (0.5)     169.0 (0.6)    33.9 (0.1)       4.6 (0.1)     40.9 (0.2)  -1.42 (0.09)  0.090 (0.001)  0.354 (0.002)          2.0 (0.2)
+7                       Untrained DQN  training seed (10)        17.7 (7.6)       15.0 (6.7)      5.9 (2.6)     55.6 (20.7)    44.4 (18.6)   12.6 (5.4)     178.9 (43.7)    177.5 (43.6)    35.6 (8.8)       5.7 (2.4)    44.1 (13.7)  -3.04 (3.38)  0.136 (0.081)  0.408 (0.212)          1.5 (1.8)
+8                          Always +1%    market seed (20)        25.5 (3.4)       22.6 (3.2)      8.9 (1.2)     115.6 (5.1)    104.4 (5.0)   30.5 (1.6)      284.7 (7.1)     283.2 (7.2)    56.9 (1.5)       9.4 (1.4)     79.7 (2.8)  -6.17 (1.84)  0.416 (0.022)  1.013 (0.041)         -3.0 (3.2)
+9                          Always +3%    market seed (20)        13.1 (2.9)       10.8 (2.2)      4.2 (0.8)      48.0 (5.6)     34.7 (4.1)    9.5 (1.2)      174.7 (7.5)     173.5 (7.7)    34.8 (1.6)       4.1 (0.8)     42.3 (2.3)  -0.95 (0.81)  0.094 (0.004)  0.370 (0.016)          2.3 (2.2)
+10                         Always +6%    market seed (20)        31.2 (2.5)       27.1 (1.9)     10.6 (0.8)      39.4 (4.5)     38.2 (4.8)   11.9 (1.5)      127.5 (7.7)     126.2 (7.9)    25.3 (1.6)       9.9 (0.7)     29.1 (2.1)  -9.56 (1.73)  0.118 (0.003)  0.183 (0.011)          3.1 (2.3)
+11  Log-linear trend fitted 2010-2018       deterministic                --               --             --            66.2           50.8         14.1            206.7           205.7          41.3              --             --            --             --             --                 --
+12  Log-linear trend fitted 2010-2021       deterministic                --               --             --       in sample      in sample    in sample            153.1           152.4          30.6              --             --            --             --             --                 --
+13                No change from 2018       deterministic                --               --             --            75.1           59.3         16.6            229.9           228.7          45.9              --             --            --             --             --                 --
+14                No change from 2021       deterministic                --               --             --       in sample      in sample    in sample            109.4           106.8          21.3              --             --            --             --             --                 --
+     Environment       Model Period Metric  Rule-based ($000)  Model ($000)  Improvement (%)  95% CI low  95% CI high  Wilcoxon p Better than rule
+0         shared  Q-learning    val   RMSE             62.306        45.574           26.854      24.817       28.813       0.000              yes
+1         shared  Q-learning    val    MAE             46.590        33.988           27.049      23.779       30.029       0.000              yes
+2         shared  Q-learning   test   RMSE            199.576       166.801           16.422      15.465       17.316       0.000              yes
+3         shared  Q-learning   test    MAE            198.219       165.452           16.531      15.643       17.461       0.000              yes
+4         shared         DQN    val   RMSE             62.306        45.559           26.879      25.072       28.561       0.000              yes
+5         shared         DQN    val    MAE             46.590        34.179           26.639      23.566       29.436       0.000              yes
+6         shared         DQN   test   RMSE            199.576       165.832           16.908      15.930       17.877       0.000              yes
+7         shared         DQN   test    MAE            198.219       164.448           17.037      16.008       18.009       0.000              yes
+8   recalibrated  Q-learning    val   RMSE             62.306        65.027           -4.367      -6.866       -1.859       0.007       no (worse)
+9   recalibrated  Q-learning    val    MAE             46.590        49.771           -6.826      -9.917       -3.946       0.000       no (worse)
+10  recalibrated  Q-learning   test   RMSE            199.576       204.915           -2.675      -3.730       -1.768       0.000       no (worse)
+11  recalibrated  Q-learning   test    MAE            198.219       203.554           -2.692      -3.679       -1.797       0.000       no (worse)
+12  recalibrated         DQN    val   RMSE             62.306        67.231           -7.905     -10.383       -5.461       0.000       no (worse)
+13  recalibrated         DQN    val    MAE             46.590        52.166          -11.968     -15.224       -8.971       0.000       no (worse)
+14  recalibrated         DQN   test   RMSE            199.576       208.072           -4.257      -5.080       -3.509       0.000       no (worse)
+15  recalibrated         DQN   test    MAE            198.219       206.688           -4.273      -5.126       -3.563       0.000       no (worse)
+                      Variant  Seeds      Val score Val MAPE (%) Test MAPE (%)  Greedy reward      Deal rate       Rounds Converged Policy change (last 5)
+0             DQN: double-dqn      2  0.256 (0.026)    9.6 (0.6)    33.7 (2.6)  0.284 (0.004)  0.551 (0.011)  4.10 (0.05)       1/2          0.041 (0.004)
+1                   DQN: main     10  0.248 (0.014)    9.6 (0.3)    33.0 (1.7)  0.279 (0.005)  0.555 (0.007)  4.07 (0.11)     10/10          0.030 (0.009)
+2            DQN: reward-deal      2  0.250 (0.019)   10.9 (1.6)    27.5 (4.1)  0.375 (0.001)  0.564 (0.000)  4.17 (0.20)       2/2          0.033 (0.013)
+3         DQN: reward-surplus      2  0.283 (0.065)   10.5 (1.6)    35.3 (4.6)  0.635 (0.008)  0.543 (0.021)  4.16 (0.02)       1/2          0.048 (0.016)
+4      Q-learning: actions-A5      5  0.271 (0.003)   10.0 (0.1)    35.3 (0.1)  0.306 (0.005)  0.544 (0.001)  3.14 (0.30)       5/5          0.037 (0.011)
+5            Q-learning: main     10  0.252 (0.029)    9.5 (0.8)    33.2 (2.0)  0.287 (0.002)  0.554 (0.009)  3.88 (0.06)     10/10          0.022 (0.011)
+6     Q-learning: reward-deal      5  0.229 (0.001)   10.0 (0.2)    29.1 (0.1)  0.381 (0.001)  0.568 (0.001)  3.94 (0.01)       5/5          0.065 (0.039)
+7  Q-learning: reward-surplus      5  0.241 (0.000)    9.2 (0.0)    32.5 (0.0)  0.650 (0.000)  0.557 (0.000)  3.94 (0.00)       5/5          0.016 (0.010)
+8   Q-learning: state-minimal      5  0.254 (0.002)   11.6 (0.3)    25.2 (0.2)  0.233 (0.008)  0.561 (0.005)  3.75 (0.05)       5/5          0.025 (0.026)
+    check                                                                      name                                                   value  pass                                                       note
+0       1    Q-learning: trained deviator beats random deviator (random population)                                          0.482 vs 0.192  True                                                        NaN
+1       1                     Q-learning: validation score trained vs random policy                                          0.252 vs 0.258  True                                            lower is better
+2       1           DQN: trained deviator beats random deviator (random population)                                          0.503 vs 0.203  True                                                        NaN
+3       1                            DQN: validation score trained vs random policy                                          0.248 vs 0.258  True                                            lower is better
+4       2                              Q-learning greedy evaluation repeats exactly                                                    True  True                                                        NaN
+5       2                                     DQN greedy evaluation repeats exactly                                                    True  True                                                        NaN
+6       2                Q-learning: SD across market seeds of validation MAPE (pp)                                                    0.78  True                                                        NaN
+7       2                       DQN: SD across market seeds of validation MAPE (pp)                                                    0.70  True                                                        NaN
+8       3  Q-learning: training reward, first vs last 20 episodes (mean over seeds)                                          0.255 -> 0.288  True  reported; population reward can fall (see deviation test)
+9       4        Q-learning: validation score untrained / best / last 5 checkpoints                                   0.250 / 0.228 / 0.234  True            end-of-training (converged) policy is evaluated
+10      5                                       Q-learning: max |Q| during training                                                   0.909  True   rewards are bounded in about [-1.5, 1.5] per negotiation
+11      6                       Q-learning: TD error / loss finite in every episode                                                    True  True                                                        NaN
+12      3         DQN: training reward, first vs last 20 episodes (mean over seeds)                                          0.228 -> 0.281  True  reported; population reward can fall (see deviation test)
+13      4               DQN: validation score untrained / best / last 5 checkpoints                                   0.334 / 0.222 / 0.238  True            end-of-training (converged) policy is evaluated
+14      5                                              DQN: max |Q| during training                                                   2.584  True   rewards are bounded in about [-1.5, 1.5] per negotiation
+15      6                              DQN: TD error / loss finite in every episode                                                    True  True                                                        NaN
+16      7       Q-learning retrained with the same seed gives identical checkpoints                                                    True  True                                                        NaN
+17      7              DQN retrained with the same seed gives identical checkpoints                                                    True  True                                                        NaN
+18      8                               Reward targets restricted to training years  [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]  True                                                        NaN
+19      8          Test years absent from training, calibration and selection years                                      [2022, 2023, 2024]  True                                                        NaN
+20      9  qlearning: tripling the reward targets leaves simulated prices unchanged                                                    True  True                                                        NaN
+21      9        dqn: tripling the reward targets leaves simulated prices unchanged                                                    True  True                                                        NaN
+22     10           Q-learning: test MAPE across training seeds, mean (SD, min-max)                                   33.2 (2.0, 32.4-39.0)  True                                                        NaN
+23     10                  DQN: test MAPE across training seeds, mean (SD, min-max)                                   33.0 (1.7, 29.7-35.1)  True                                                        NaN
+                                 deviator_reward  population_reward
+model     population deviator                                      
+dqn       Always +6% Always +1%           -0.325              0.275
+                     Always +6%            0.240              0.244
+                     Learned               0.338              0.234
+                     Random                0.092              0.256
+          Learned    Always +1%           -0.316              0.301
+                     Always +6%            0.155              0.290
+                     Learned               0.273              0.276
+                     Random                0.036              0.295
+          Random     Always +1%           -0.293              0.225
+                     Always +6%            0.404              0.195
+                     Learned               0.503              0.179
+                     Random                0.203              0.202
+qlearning Always +6% Always +1%           -0.325              0.275
+                     Always +6%            0.240              0.244
+                     Learned               0.269              0.244
+                     Random                0.084              0.259
+          Learned    Always +1%           -0.326              0.308
+                     Always +6%            0.221              0.292
+                     Learned               0.276              0.284
+                     Random                0.065              0.295
+          Random     Always +1%           -0.296              0.222
+                     Always +6%            0.405              0.192
+                     Learned               0.482              0.184
+                     Random                0.192              0.205

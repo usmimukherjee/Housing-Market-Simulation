@@ -1,0 +1,4 @@
+Technique,Converged seeds,Episodes to convergence,Training time per seed (min),Reward per negotiation,Train MAPE (%),Val RMSE ($000),Val MAPE (%),Test RMSE ($000),Test MAPE (%),"RMSE vs rule, val, shared env. (%)","RMSE vs rule, test, shared env. (%)","RMSE vs rule, val, recalibrated env. (%)","RMSE vs rule, test, recalibrated env. (%)"
+Rule-based,n/a (no training),n/a,0,0.091 (0.020),3.0 (0.7),62.3 (5.4),12.8 (1.4),199.6 (5.9),39.8 (1.2),--,--,--,--
+Q-learning (RL),10/10,120 [90-250],0.8,0.287 (0.002),5.5 (0.8),45.6 (4.6),9.5 (0.8),166.8 (10.2),33.2 (2.0),+26.9,+16.4,-4.4,-2.7
+DQN (DRL),10/10,230 [200-250],101.2,0.279 (0.005),5.7 (1.0),45.6 (3.4),9.6 (0.3),165.8 (8.4),33.0 (1.7),+26.9,+16.9,-7.9,-4.3

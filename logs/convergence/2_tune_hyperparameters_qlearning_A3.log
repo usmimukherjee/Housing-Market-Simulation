@@ -1,0 +1,51 @@
+[qlearning] 8/144 runs, 251s
+[qlearning] 16/144 runs, 518s
+[qlearning] 24/144 runs, 792s
+[qlearning] 32/144 runs, 1067s
+[qlearning] 40/144 runs, 4091s
+[qlearning] 48/144 runs, 5962s
+[qlearning] 56/144 runs, 8625s
+[qlearning] 64/144 runs, 11450s
+[qlearning] 72/144 runs, 11685s
+[qlearning] 80/144 runs, 11919s
+[qlearning] 88/144 runs, 12175s
+[qlearning] 96/144 runs, 12410s
+[qlearning] 104/144 runs, 12622s
+[qlearning] 112/144 runs, 12857s
+[qlearning] 120/144 runs, 13087s
+[qlearning] 128/144 runs, 13320s
+[qlearning] 136/144 runs, 13536s
+[qlearning] 144/144 runs, 13686s
+    config_id  hp_alpha  hp_gamma  hp_eps_start  hp_eps_min  hp_alpha_c  final_val_score_mean  final_val_score_sd  best_ckpt_val_score_mean  final_greedy_reward  untrained_greedy_reward  final_policy_change  converged_share  converged_episode  runtime_s  eligible  rank_best_checkpoint_rule
+21         21      0.10       0.9           0.8        0.05       200.0              0.230107            0.001136                  0.227063             0.287706                 0.208341              0.04165              1.0              160.0  59.986832      True                          7
+41         41      0.20       0.9           1.0        0.05       200.0              0.230780            0.001455                  0.226397             0.287893                 0.208341              0.01810              1.0              195.0  58.058323      True                          4
+1           1      0.05       0.9           0.5        0.05       200.0              0.231661            0.000241                  0.229059             0.289137                 0.208341              0.01110              1.0               80.0  52.865417      True                         27
+3           3      0.05       0.9           0.8        0.05       200.0              0.232064            0.001638                  0.228113             0.289246                 0.208341              0.04335              0.5               80.0  67.944090      True                         16
+2           2      0.05       0.9           0.8        0.01       200.0              0.233120            0.001050                  0.226242             0.286703                 0.208341              0.06215              1.0              160.0  83.917664      True                          2
+5           5      0.05       0.9           1.0        0.05       200.0              0.233373            0.000463                  0.226687             0.289012                 0.208341              0.06300              1.0               90.0  67.428108      True                          5
+4           4      0.05       0.9           1.0        0.01       200.0              0.233556            0.000312                  0.226052             0.286273                 0.208341              0.05210              1.0              170.0  67.183011      True                          1
+40         40      0.20       0.9           1.0        0.01       200.0              0.235493            0.001526                  0.227325             0.286019                 0.208341              0.01180              1.0              205.0  57.571189      True                          9
+20         20      0.10       0.9           0.8        0.01       200.0              0.235937            0.002378                  0.228745             0.286420                 0.208341              0.01120              1.0              155.0  55.917049      True                         24
+23         23      0.10       0.9           1.0        0.05       200.0              0.261074            0.041081                  0.228153             0.286428                 0.208341              0.01980              1.0              225.0  51.686497      True                         17
+{
+  "qlearning": {
+    "alpha": 0.1,
+    "gamma": 0.9,
+    "eps_start": 0.8,
+    "eps_min": 0.05,
+    "alpha_c": 200.0
+  },
+  "dqn": {
+    "hidden": [
+      128,
+      64
+    ],
+    "lr": 0.0005,
+    "gamma": 0.9,
+    "batch_size": 128,
+    "buffer_size": 10000,
+    "target_update": 1000,
+    "lr_anneal": true,
+    "polyak_eval": 0.999
+  }
+}

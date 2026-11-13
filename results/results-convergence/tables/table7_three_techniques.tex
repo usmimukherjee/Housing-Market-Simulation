@@ -1,0 +1,19 @@
+\begin{tabular}{lrrr}
+\toprule
+Measure & Rule-based & Q-learning (RL) & DQN (DRL) \\
+\midrule
+Converged seeds & n/a (no training) & 10/10 & 10/10 \\
+Episodes to convergence & n/a & 120 [90-250] & 230 [200-250] \\
+Training time per seed (min) & 0 & 0.8 & 101.2 \\
+Reward per negotiation & 0.091 (0.020) & 0.287 (0.002) & 0.279 (0.005) \\
+Train MAPE (\%) & 3.0 (0.7) & 5.5 (0.8) & 5.7 (1.0) \\
+Val RMSE (\$000) & 62.3 (5.4) & 45.6 (4.6) & 45.6 (3.4) \\
+Val MAPE (\%) & 12.8 (1.4) & 9.5 (0.8) & 9.6 (0.3) \\
+Test RMSE (\$000) & 199.6 (5.9) & 166.8 (10.2) & 165.8 (8.4) \\
+Test MAPE (\%) & 39.8 (1.2) & 33.2 (2.0) & 33.0 (1.7) \\
+RMSE vs rule, val, shared env. (\%) & -- & +26.9 & +26.9 \\
+RMSE vs rule, test, shared env. (\%) & -- & +16.4 & +16.9 \\
+RMSE vs rule, val, recalibrated env. (\%) & -- & -4.4 & -7.9 \\
+RMSE vs rule, test, recalibrated env. (\%) & -- & -2.7 & -4.3 \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,22 @@
+{
+  "qlearning": {
+    "alpha": 0.1,
+    "gamma": 0.9,
+    "eps_start": 0.8,
+    "eps_min": 0.05,
+    "alpha_c": 200.0
+  },
+  "dqn": {
+    "hidden": [
+      128,
+      64
+    ],
+    "lr": 0.0005,
+    "gamma": 0.9,
+    "batch_size": 128,
+    "buffer_size": 10000,
+    "target_update": 1000,
+    "lr_anneal": true,
+    "polyak_eval": 0.999
+  }
+}

@@ -1,0 +1,25 @@
+model,population,deviator,deviator_reward,population_reward
+dqn,Always +6%,Always +1%,-0.3246,0.2748
+dqn,Always +6%,Always +6%,0.2404,0.2437
+dqn,Always +6%,Learned,0.3382,0.2338
+dqn,Always +6%,Random,0.0923,0.2561
+dqn,Learned,Always +1%,-0.3159,0.3015
+dqn,Learned,Always +6%,0.1552,0.2898
+dqn,Learned,Learned,0.2731,0.2761
+dqn,Learned,Random,0.0357,0.2952
+dqn,Random,Always +1%,-0.2926,0.2247
+dqn,Random,Always +6%,0.4042,0.195
+dqn,Random,Learned,0.5027,0.1787
+dqn,Random,Random,0.2027,0.2016
+qlearning,Always +6%,Always +1%,-0.3246,0.2748
+qlearning,Always +6%,Always +6%,0.2404,0.2437
+qlearning,Always +6%,Learned,0.2688,0.2435
+qlearning,Always +6%,Random,0.0841,0.2593
+qlearning,Learned,Always +1%,-0.3258,0.3079
+qlearning,Learned,Always +6%,0.2207,0.2921
+qlearning,Learned,Learned,0.2759,0.2839
+qlearning,Learned,Random,0.065,0.2955
+qlearning,Random,Always +1%,-0.296,0.2221
+qlearning,Random,Always +6%,0.4048,0.1925
+qlearning,Random,Learned,0.4815,0.1838
+qlearning,Random,Random,0.1925,0.2051

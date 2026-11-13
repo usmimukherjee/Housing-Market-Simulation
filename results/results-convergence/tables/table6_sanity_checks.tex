@@ -1,0 +1,30 @@
+\begin{tabular}{lrrrr}
+\toprule
+check & name & value & pass & note \\
+\midrule
+1 & Q-learning: trained deviator beats random deviator (random population) & 0.482 vs 0.192 & True & -- \\
+1 & Q-learning: validation score trained vs random policy & 0.252 vs 0.258 & True & lower is better \\
+1 & DQN: trained deviator beats random deviator (random population) & 0.503 vs 0.203 & True & -- \\
+1 & DQN: validation score trained vs random policy & 0.248 vs 0.258 & True & lower is better \\
+2 & Q-learning greedy evaluation repeats exactly & True & True & -- \\
+2 & DQN greedy evaluation repeats exactly & True & True & -- \\
+2 & Q-learning: SD across market seeds of validation MAPE (pp) & 0.78 & True & -- \\
+2 & DQN: SD across market seeds of validation MAPE (pp) & 0.70 & True & -- \\
+3 & Q-learning: training reward, first vs last 20 episodes (mean over seeds) & 0.255 -> 0.288 & True & reported; population reward can fall (see deviation test) \\
+4 & Q-learning: validation score untrained / best / last 5 checkpoints & 0.250 / 0.228 / 0.234 & True & end-of-training (converged) policy is evaluated \\
+5 & Q-learning: max |Q| during training & 0.909 & True & rewards are bounded in about [-1.5, 1.5] per negotiation \\
+6 & Q-learning: TD error / loss finite in every episode & True & True & -- \\
+3 & DQN: training reward, first vs last 20 episodes (mean over seeds) & 0.228 -> 0.281 & True & reported; population reward can fall (see deviation test) \\
+4 & DQN: validation score untrained / best / last 5 checkpoints & 0.334 / 0.222 / 0.238 & True & end-of-training (converged) policy is evaluated \\
+5 & DQN: max |Q| during training & 2.584 & True & rewards are bounded in about [-1.5, 1.5] per negotiation \\
+6 & DQN: TD error / loss finite in every episode & True & True & -- \\
+7 & Q-learning retrained with the same seed gives identical checkpoints & True & True & -- \\
+7 & DQN retrained with the same seed gives identical checkpoints & True & True & -- \\
+8 & Reward targets restricted to training years & [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018] & True & -- \\
+8 & Test years absent from training, calibration and selection years & [2022, 2023, 2024] & True & -- \\
+9 & qlearning: tripling the reward targets leaves simulated prices unchanged & True & True & -- \\
+9 & dqn: tripling the reward targets leaves simulated prices unchanged & True & True & -- \\
+10 & Q-learning: test MAPE across training seeds, mean (SD, min-max) & 33.2 (2.0, 32.4-39.0) & True & -- \\
+10 & DQN: test MAPE across training seeds, mean (SD, min-max) & 33.0 (1.7, 29.7-35.1) & True & -- \\
+\bottomrule
+\end{tabular}

@@ -1,0 +1,38 @@
+eval 10/112 468s
+eval 20/112 600s
+eval 30/112 609s
+eval 40/112 617s
+eval 50/112 627s
+eval 60/112 638s
+eval 70/112 650s
+eval 80/112 662s
+eval 90/112 672s
+eval 100/112 681s
+eval 110/112 788s
+eval 112/112 833s
+    check                                                                      name                                                   value  pass                                                       note
+0       1    Q-learning: trained deviator beats random deviator (random population)                                          0.482 vs 0.192  True                                                           
+1       1                     Q-learning: validation score trained vs random policy                                          0.252 vs 0.258  True                                            lower is better
+2       1           DQN: trained deviator beats random deviator (random population)                                          0.503 vs 0.203  True                                                           
+3       1                            DQN: validation score trained vs random policy                                          0.248 vs 0.258  True                                            lower is better
+4       2                              Q-learning greedy evaluation repeats exactly                                                    True  True                                                           
+5       2                                     DQN greedy evaluation repeats exactly                                                    True  True                                                           
+6       2                Q-learning: SD across market seeds of validation MAPE (pp)                                                    0.78  True                                                           
+7       2                       DQN: SD across market seeds of validation MAPE (pp)                                                    0.70  True                                                           
+8       3  Q-learning: training reward, first vs last 20 episodes (mean over seeds)                                          0.255 -> 0.288  True  reported; population reward can fall (see deviation test)
+9       4        Q-learning: validation score untrained / best / last 5 checkpoints                                   0.250 / 0.228 / 0.234  True            end-of-training (converged) policy is evaluated
+10      5                                       Q-learning: max |Q| during training                                                   0.909  True   rewards are bounded in about [-1.5, 1.5] per negotiation
+11      6                       Q-learning: TD error / loss finite in every episode                                                    True  True                                                           
+12      3         DQN: training reward, first vs last 20 episodes (mean over seeds)                                          0.228 -> 0.281  True  reported; population reward can fall (see deviation test)
+13      4               DQN: validation score untrained / best / last 5 checkpoints                                   0.334 / 0.222 / 0.238  True            end-of-training (converged) policy is evaluated
+14      5                                              DQN: max |Q| during training                                                   2.584  True   rewards are bounded in about [-1.5, 1.5] per negotiation
+15      6                              DQN: TD error / loss finite in every episode                                                    True  True                                                           
+16      7       Q-learning retrained with the same seed gives identical checkpoints                                                    True  True                                                           
+17      7              DQN retrained with the same seed gives identical checkpoints                                                    True  True                                                           
+18      8                               Reward targets restricted to training years  [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018]  True                                                           
+19      8          Test years absent from training, calibration and selection years                                      [2022, 2023, 2024]  True                                                           
+20      9  qlearning: tripling the reward targets leaves simulated prices unchanged                                                    True  True                                                           
+21      9        dqn: tripling the reward targets leaves simulated prices unchanged                                                    True  True                                                           
+22     10           Q-learning: test MAPE across training seeds, mean (SD, min-max)                                   33.2 (2.0, 32.4-39.0)  True                                                           
+23     10                  DQN: test MAPE across training seeds, mean (SD, min-max)                                   33.0 (1.7, 29.7-35.1)  True                                                           
+done in 865s

@@ -1,0 +1,22 @@
+\begin{tabular}{lrrrrrrrrrr}
+\toprule
+Environment & Model & Period & Metric & Rule-based ($000) & Model ($000) & Improvement (\%) & 95\% CI low & 95\% CI high & Wilcoxon p & Better than rule \\
+\midrule
+shared & Q-learning & val & RMSE & 62.3 & 45.6 & 26.9 & 24.8 & 28.8 & 0.000 & yes \\
+shared & Q-learning & val & MAE & 46.6 & 34.0 & 27.0 & 23.8 & 30.0 & 0.000 & yes \\
+shared & Q-learning & test & RMSE & 199.6 & 166.8 & 16.4 & 15.5 & 17.3 & 0.000 & yes \\
+shared & Q-learning & test & MAE & 198.2 & 165.5 & 16.5 & 15.6 & 17.5 & 0.000 & yes \\
+shared & DQN & val & RMSE & 62.3 & 45.6 & 26.9 & 25.1 & 28.6 & 0.000 & yes \\
+shared & DQN & val & MAE & 46.6 & 34.2 & 26.6 & 23.6 & 29.4 & 0.000 & yes \\
+shared & DQN & test & RMSE & 199.6 & 165.8 & 16.9 & 15.9 & 17.9 & 0.000 & yes \\
+shared & DQN & test & MAE & 198.2 & 164.4 & 17.0 & 16.0 & 18.0 & 0.000 & yes \\
+recalibrated & Q-learning & val & RMSE & 62.3 & 65.0 & -4.367 & -6.866 & -1.859 & 0.007 & no (worse) \\
+recalibrated & Q-learning & val & MAE & 46.6 & 49.8 & -6.826 & -9.917 & -3.946 & 0.000 & no (worse) \\
+recalibrated & Q-learning & test & RMSE & 199.6 & 204.9 & -2.675 & -3.730 & -1.768 & 0.000 & no (worse) \\
+recalibrated & Q-learning & test & MAE & 198.2 & 203.6 & -2.692 & -3.679 & -1.797 & 0.000 & no (worse) \\
+recalibrated & DQN & val & RMSE & 62.3 & 67.2 & -7.905 & -10.4 & -5.461 & 0.000 & no (worse) \\
+recalibrated & DQN & val & MAE & 46.6 & 52.2 & -12.0 & -15.2 & -8.971 & 0.000 & no (worse) \\
+recalibrated & DQN & test & RMSE & 199.6 & 208.1 & -4.257 & -5.080 & -3.509 & 0.000 & no (worse) \\
+recalibrated & DQN & test & MAE & 198.2 & 206.7 & -4.273 & -5.126 & -3.563 & 0.000 & no (worse) \\
+\bottomrule
+\end{tabular}

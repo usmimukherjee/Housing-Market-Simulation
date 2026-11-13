@@ -1,0 +1,9 @@
+                        name  final_val_score  final_val_score_5  final_greedy_reward  untrained_greedy_reward  final_policy_change  final_policy_change_onpolicy  converged converged_episode  final_q_max  runtime_s
+0                A3 g.99 b32           0.2605             0.2572               0.2781                   0.1578               0.1115                        0.0895      False              None       1.6487   877.4262
+1                 A3 g.9 b32           0.2827             0.2731               0.2715                   0.1578               0.2020                        0.1905      False              None       1.6222   916.0810
+2                A3 g.9 b128           0.2876             0.2653               0.2768                   0.1578               0.1689                        0.2457      False              None       3.5265  1090.6469
+3         A3 g.9 b128 tu1000           0.2312             0.2410               0.2767                   0.1578               0.1668                        0.1778      False              None       2.5224  1101.5390
+4         A3 g.9 b128 double           0.2609             0.2614               0.2686                   0.1578               0.1827                        0.1768      False              None       2.1796  1171.1154
+5         A3 g.9 b128 lr1e-4           0.2585             0.2484               0.2792                   0.1578               0.1167                        0.1227      False              None       1.3771  1096.9900
+6         A3 g.9 b64 (64,64)           0.2356             0.2502               0.2774                  -0.1690               0.1618                        0.1756      False              None       1.5494   927.1531
+7  A3 g.9 b128 double tu1000           0.2637             0.2596               0.2810                   0.1578               0.1203                        0.1095      False              None       2.6823  1138.0086

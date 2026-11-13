@@ -1,0 +1,26 @@
+scenario     policy  response_2022_23  response_2022_23_lo  response_2022_23_hi  dev_2022  dev_2023  dev_2024  dev_2028  share_expected_sign_pct
+  supply Rule-based             -1.47                -1.67                -1.29     -0.52     -2.42     -4.38     -7.45                     85.0
+  supply Q-learning             -1.82                -1.96                -1.69     -0.67     -2.98     -5.42     -7.84                     83.0
+  supply        DQN             -2.02                -2.23                -1.81     -0.80     -3.24     -6.08     -8.50                     92.5
+  demand Rule-based              1.67                 1.54                 1.80      0.65      2.68      4.74      8.08                     95.0
+  demand Q-learning              2.68                 2.45                 2.90      1.18      4.18      6.33      9.38                    100.0
+  demand        DQN              3.20                 3.05                 3.35      1.33      5.07      7.85     11.68                    100.0
+scenario           metric    model_a    model_b  diff  ci_lo  ci_hi  ci_excludes_zero
+  supply response_2022_23        DQN Q-learning -0.20  -0.43   0.03             False
+  supply         dev_2024        DQN Q-learning -0.67  -1.05  -0.32              True
+  supply         dev_2028        DQN Q-learning -0.66  -1.64   0.37             False
+  supply response_2022_23        DQN Rule-based -0.55  -0.81  -0.29              True
+  supply         dev_2024        DQN Rule-based -1.70  -2.11  -1.30              True
+  supply         dev_2028        DQN Rule-based -1.05  -2.08  -0.00              True
+  supply response_2022_23 Q-learning Rule-based -0.35  -0.55  -0.14              True
+  supply         dev_2024 Q-learning Rule-based -1.03  -1.36  -0.69              True
+  supply         dev_2028 Q-learning Rule-based -0.39  -0.81   0.02             False
+  demand response_2022_23        DQN Q-learning  0.52   0.27   0.75              True
+  demand         dev_2024        DQN Q-learning  1.52   0.68   2.26              True
+  demand         dev_2028        DQN Q-learning  2.30   0.23   3.99              True
+  demand response_2022_23        DQN Rule-based  1.54   1.33   1.73              True
+  demand         dev_2024        DQN Rule-based  3.11   2.60   3.63              True
+  demand         dev_2028        DQN Rule-based  3.60   2.48   4.77              True
+  demand response_2022_23 Q-learning Rule-based  1.01   0.76   1.27              True
+  demand         dev_2024 Q-learning Rule-based  1.59   0.80   2.48              True
+  demand         dev_2028 Q-learning Rule-based  1.30  -0.12   3.16             False
