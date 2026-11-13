@@ -39,7 +39,7 @@ The workflow from data collection (HMTS survey, DMTI spatial data, Halifax asses
 <table>
   <tr>
     <td bgcolor="#ffffff">
-      <img src="images/schematic.png" alt="Study methodology schematic" />
+      <img src="images/schematic.png" alt="Study methodology schematic" style="background-color: white; padding: 8px; />
     </td>
   </tr>
 </table>
@@ -51,7 +51,7 @@ Households find properties within their willingness-to-pay range and open below 
 <table>
   <tr>
     <td bgcolor="#ffffff">
-      <img src="images/ABM.png" alt="Rule-based bidding workflow" />
+      <img src="images/ABM.png" alt="Rule-based bidding workflow" style="background-color: white; padding: 8px; />
     </td>
   </tr>
 </table>
